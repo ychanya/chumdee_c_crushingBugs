@@ -7,8 +7,19 @@ draggedPiece;
 
 function changeBGImage() {
     puzzleBoard.style.backgroundImage = `url(images/backGround${this.id}.jpg)`;
+    resetPieces(this.id);
 }
+function resetPieces(id){
+    dropZones.forEach (zone => {
+        if (zone.children.length > 0) 
+            puzzlePiecesContainer.appendChild(zone.firstChild);
+        });
 
+        puzzlePieces[0].src = `images/topLeft${id}.jpg`;
+        puzzlePieces[1].src = `images/topRight${id}.jpg`;
+        puzzlePieces[2].src = `images/bottomLeft${id}.jpg`;
+        puzzlePieces[3].src = `images/bottomRight${id}.jpg`;
+}
 function handleStartDrag() {
     console.log('started dragging this piece: ', this);
     draggedPiece = this;
